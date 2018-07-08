@@ -6,12 +6,11 @@ import {
 import { firebase } from '../firebase';
 import withAuthentication from './withAuthentication';
 import Navigation from './Navigation';
-import LandingPage from './Landing';
 import SignUpPage from './SignUp';
 import SignInPage from './SignIn';
 import PasswordForgetPage from './PasswordForget';
 import HomePage from './Home';
-import AccountPage from './Account';
+
 
 import * as routes from '../constants/routes';
 
@@ -34,15 +33,11 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <div>
+                <div className="container">
                     <Navigation authUser={this.state.authUser}/>
 
                     <hr/>
 
-                    <Route
-                        exact path={routes.LANDING}
-                        component={() => <LandingPage/>}
-                    />
                     <Route
                         exact path={routes.SIGN_UP}
                         component={() => <SignUpPage/>}

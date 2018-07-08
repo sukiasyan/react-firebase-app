@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import withAuthorization from './withAuthorization';
 import {db} from '../firebase';
+import MapContainer from './map/Map';
+import Search from '../components/eventbrite/search';
 
 class HomePage extends Component {
     constructor(props) {
@@ -27,6 +29,8 @@ class HomePage extends Component {
                 <h1>Home</h1>
                 <p>The Home Page is accessible by every signed in user.</p>
                 {!!users && <UserList users={users}/>}
+                <Search/>
+                <MapContainer/>
             </div>
         );
     }
