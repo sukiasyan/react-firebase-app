@@ -4,7 +4,7 @@ import { compose } from 'recompose';
 import withAuthorization from './withAuthorization';
 import {db} from '../firebase';
 import MapContainer from './map/Map';
-import Search from '../components/eventbrite/search';
+
 
 class HomePage extends Component {
     constructor(props) {
@@ -23,30 +23,16 @@ class HomePage extends Component {
     }
 
     render() {
-        const {users} = this.props;
         return (
             <div>
-                <h1>Home</h1>
-                <p>The Home Page is accessible by every signed in user.</p>
-                {!!users && <UserList users={users}/>}
-                <Search/>
+                <h1>Event Search Page</h1>
+                <p>Accessible by every signed in user.</p>
+
                 <MapContainer/>
             </div>
         );
     }
 }
-
-const UserList = ({users}) =>
-    <div>
-        <h2>List of Usernames of Users</h2>
-        <p>(Saved on Sign Up in Firebase Database)</p>
-
-        {Object.keys(users).map(key =>
-            <div key={key}>{users[key].username}</div>
-        )}
-    </div>
-
-
 
 const mapStateToProps = (state) => ({
     users: state.userState.users,

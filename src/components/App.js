@@ -54,10 +54,10 @@ class App extends Component {
                         exact path={routes.HOME}
                         component={() => <HomePage/>}
                     />
-                    <Route
-                        exact path={routes.ACCOUNT}
-                        component={() => <HomePage/>}
-                    />
+                    {/*<Route*/}
+                        {/*exact path={routes.ACCOUNT}*/}
+                        {/*component={() => <HomePage/>}*/}
+                    {/*/>*/}
                 </div>
             </Router>
         );
