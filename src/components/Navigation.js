@@ -1,31 +1,47 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import SignOutButton from './SignOut';
 import * as routes from '../constants/routes';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 
-const Navigation = ({ authUser }) =>
+
+const Navigation = ({authUser}) =>
     <div>
-        { authUser
-            ? <NavigationAuth />
-            : <NavigationNonAuth />
+        {authUser
+            ? <NavigationAuth/>
+            : <NavigationNonAuth/>
         }
     </div>
 
 const NavigationAuth = () =>
-    <ul>
 
-        <li><Link to={routes.HOME}>Home</Link></li>
+    <MuiThemeProvider>
+        <AppBar
+            title="Eventbrite find your next experience"
+            style={{backgroundColor: "grey"}}
+            iconElementRight={<div><SignOutButton/></div>}
+        >
+        </AppBar>
+    </MuiThemeProvider>
 
-        <li><SignOutButton /></li>
-    </ul>
+const NavigationNonAuth = () => (
+    <MuiThemeProvider>
+        <AppBar
+            title="Eventbrite find your next experience"
+            style={{backgroundColor: "grey"}}
 
-const NavigationNonAuth = () =>
-    <ul>
-        <li><Link to={routes.SIGN_UP}>Sign Up</Link></li>
-        <li><Link to={routes.SIGN_IN}>Sign In</Link></li>
-    </ul>
+            iconElementRight={<div><FlatButton style={{color: "white"}} label="Sign In" href={routes.SIGN_IN}/>
+                <FlatButton style={{color: "white"}} label="Sign Up" href={routes.SIGN_UP}/></div>}
+        >
+            {/*<Link to={routes.SIGN_UP}>Sign Up</Link>*/}
+            {/*<Link to={routes.SIGN_IN}>Sign In</Link>*/}
+        </AppBar>
+    </MuiThemeProvider>
+
+);
 
 const mapStateToProps = (state) => ({
     authUser: state.sessionState.authUser,

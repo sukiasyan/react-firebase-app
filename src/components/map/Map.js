@@ -23,7 +23,7 @@ export class MapContainer extends Component {
 
     render() {
         const style = {
-            width: '60%',
+            width: '70%',
             height: '60%'
         };
 
@@ -34,17 +34,15 @@ export class MapContainer extends Component {
                     google={this.props.google}
                     style={style}
                     initialCenter={{
-                         lat: 0,
-                         lng: 0
-                     }}
+                        lat: 0,
+                        lng: 0
+                    }}
                     zoom={2}>
+                    { this.state.newLat !== 0
+                        ? <Marker position={{lat: this.state.newLat, lng: this.state.newLong}} />
+                        : null
+                    }
 
-                    <Marker
-                        // name={'Dolores park'}
-                        position={{
-                            lat: this.state.newLat,
-                            lng: this.state.newLong}}/>
-                    <Marker/>
                 </Map>
 
             </div>

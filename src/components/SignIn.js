@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-
 import { SignUpLink } from './SignUp';
 import { PasswordForgetLink } from './PasswordForget';
 import { auth } from '../firebase';
@@ -8,7 +7,7 @@ import * as routes from '../constants/routes';
 
 const SignInPage = ({ history }) =>
     <div>
-        <h1>SignIn</h1>
+        <h3>SignIn Form</h3>
         <SignInForm history={history} />
         <PasswordForgetLink />
         <SignUpLink />
@@ -65,25 +64,29 @@ class SignInForm extends Component {
             email === '';
 
         return (
+            <div>
             <form onSubmit={this.onSubmit}>
-                <input
-                    value={email}
-                    onChange={event => this.setState(byPropKey('email', event.target.value))}
-                    type="text"
-                    placeholder="Email Address"
-                />
-                <input
-                    value={password}
-                    onChange={event => this.setState(byPropKey('password', event.target.value))}
-                    type="password"
-                    placeholder="Password"
-                />
-                <button disabled={isInvalid} type="submit">
-                    Sign In
-                </button>
+                <div className="form-group">
+                        <label htmlFor="exampleInputEmail1">Email address</label>
+                        <input type="email" className="form-control" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Enter email" value={email}
+                               onChange={event => this.setState(byPropKey('email', event.target.value))}/>
+                            <small id="emailHelp" className="form-text text-muted">We'll never share your email with
+                                anyone else.
+                            </small>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="exampleInputPassword1">Password</label>
+                        <input type="password" className="form-control" id="exampleInputPassword1"
+                               placeholder="Password" value={password}
+                               onChange={event => this.setState(byPropKey('password', event.target.value))}/>
+                    </div>
+                    <button type="submit" className="btn btn-success my-2 my-sm-0" disabled={isInvalid}>Sign In</button>
 
-                { error && <p>{error.message}</p> }
-            </form>
+                    { error && <p>{error.message}</p> }
+                </form>
+            </div>
+
         );
     }
 }

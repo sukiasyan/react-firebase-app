@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import eventbrite from 'eventbrite';
 import * as sdk_token from '../../constants/search_sdk';
@@ -8,8 +7,9 @@ import * as sdk_token from '../../constants/search_sdk';
 // Create configured Eventbrite SDK
 const sdk = eventbrite({token: sdk_token.SDK_TOKEN});
 // let response = '';
-// // See: https://www.eventbrite.com/developer/v3/endpoints/users/#ebapi-get-users-id
-
+const paperStyle = {
+    padding: "10px"
+};
 class Search extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +19,7 @@ class Search extends Component {
             longitude: 0,
             description: '',
             searchInput: 'Hello'
-        }
+        };
         this.updateInput = this.updateInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.demoMethod = this.demoMethod.bind(this);
@@ -78,34 +78,19 @@ class Search extends Component {
 
     render() {
         return (
-            <div>
-                {/*{this.demoMethod(this.state.latitude, this.state.longitude)}*/}
-               {/*<div>*/}
-                    {/*<input type="text" onChange={this.updateInput} />*/}
-                    {/*<button type="submit" onClick={this.handleSubmit} >Search</button>*/}
-                {/*</div>*/}
-
-                {/*<form onSubmit={this.handleSubmit}>*/}
-                    <label>
-                        Name:
-                        <input type="text" onChange={this.updateInput} />
-                    </label>
-                <TextField
-                    id="search"
-                    label="Search field"
-                    type="search"
-                    margin="normal"
-                />
-                    {/*<input type="submit" value="Submit" onClick={this.handleSubmit}/>*/}
-                {/*</form>*/}
+            <div className="form-group">
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Type to search" onChange={this.updateInput}/>
+                </form>
 
                 <div>
-                <Paper  elevation={1}>
+                    <br/>
+                <Paper  elevation={1} style={this.state.description ? paperStyle : null}>
                     <Typography variant="headline" component="h3">
-                        <p>{this.state.description}</p>
+                        <p className="paper-content">{this.state.description}</p>
                     </Typography>
-                </Paper>
-            </div>
+                </Paper><br/>
+                </div>
             </div>
         )
     }
@@ -113,17 +98,4 @@ class Search extends Component {
 }
 
 export default Search;
-
-//
-// var event = require('search-eventbrite');
-//
-// event.getAll({
-//     q: 'Founder Institute Information Session',
-//     'location.address':'Yerevan',
-//     sort_by: 'date'
-// }, function(err, res, events){
-//     if(err) return console.log('err: ', err);
-//     console.log('events: ', events)
-//     // console.log('events: ', events[1].venue)
-// });
 
