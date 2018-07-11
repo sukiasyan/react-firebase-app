@@ -31,7 +31,7 @@ class Search extends Component {
     getMapMarkerCoords(){
         sdk.request(`/events/search/?expand=venue`)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 this.setState({
                     response: res
                 });
@@ -43,9 +43,9 @@ class Search extends Component {
                             longitude: res.events[i].venue.longitude,
                             description: res.events[i].description.text
                         });
-                        console.log('Includes', i);
-                        console.log(res.events[i].venue.latitude);
-                        console.log(res.events[i].venue.longitude);
+                        // console.log('Includes', i);
+                        // console.log(res.events[i].venue.latitude);
+                        // console.log(res.events[i].venue.longitude);
                         this.demoMethod(this.state.latitude, this.state.longitude);
                         return;
                     } else {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 import Search from '../eventbrite/Search';
 
 
@@ -19,7 +19,7 @@ export class MapContainer extends Component {
             newLong: long
         });
 
-        console.log("Get Data", lat, long);
+        // console.log("Get Data", lat, long);
     }
 
     render() {

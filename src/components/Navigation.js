@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import SignOutButton from './SignOut';
 import * as routes from '../constants/routes';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
