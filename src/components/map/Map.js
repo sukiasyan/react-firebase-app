@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import Search from '../eventbrite/Search';
 
+
 export class MapContainer extends Component {
     constructor(props) {
         super(props);
@@ -28,7 +29,9 @@ export class MapContainer extends Component {
         };
 
         return (
-            <div>
+            <div style={{display: "block",
+                width: "100%",
+                padding: "6px 12px"}}>
                 <Search sendData={this.getData}/>
                 <Map
                     google={this.props.google}
@@ -38,13 +41,12 @@ export class MapContainer extends Component {
                         lng: 0
                     }}
                     zoom={2}>
-                    { this.state.newLat !== 0
-                        ? <Marker position={{lat: this.state.newLat, lng: this.state.newLong}} />
+                    {this.state.newLat !== 0
+                        ? <Marker position={{lat: this.state.newLat, lng: this.state.newLong}}/>
                         : null
                     }
 
                 </Map>
-
             </div>
         );
     }

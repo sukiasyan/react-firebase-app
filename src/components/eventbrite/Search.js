@@ -21,7 +21,6 @@ class Search extends Component {
             searchInput: 'Hello'
         };
         this.updateInput = this.updateInput.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.demoMethod = this.demoMethod.bind(this);
         this.getMapMarkerCoords = this.getMapMarkerCoords.bind(this);
     }
@@ -37,7 +36,7 @@ class Search extends Component {
                     response: res
                 });
                 for (let i = 0; i < res.events.length; i++) {
-                    if (res.events[i].name.text.includes(this.state.searchInput)) {
+                    if (res.events[i].name.text.includes(this.state.searchInput) && this.state.searchInput !== '') {
                         this.setState({
                             response: res,
                             latitude: res.events[i].venue.latitude,
@@ -51,7 +50,7 @@ class Search extends Component {
                         return;
                     } else {
                         this.setState({
-                            response: res,
+                            response: '',
                             latitude: 0,
                             longitude: 0,
                             description: ''
@@ -70,16 +69,10 @@ class Search extends Component {
         this.getMapMarkerCoords();
     }
 
-
-    handleSubmit(){
-        console.log('Your input value is: ' + this.state.searchInput);
-
-    }
-
     render() {
         return (
             <div className="form-group">
-                <form onSubmit={this.handleSubmit}>
+                <form >
                     <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Type to search" onChange={this.updateInput}/>
                 </form>
 
